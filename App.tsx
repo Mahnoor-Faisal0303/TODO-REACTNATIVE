@@ -12,6 +12,10 @@ import {Button, SafeAreaView, StyleSheet, Text, TextInput} from 'react-native';
 function App(): React.JSX.Element {
   const [text, onChangeText] = React.useState('');
 
+  const Add = () => {
+    console.log('adding');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Todo APP</Text>
@@ -22,6 +26,7 @@ function App(): React.JSX.Element {
         value={text}
       />
       <Button
+        onPress={Add}
         title="Add"
         color="green"
         accessibilityLabel="Learn more about this purple button"
