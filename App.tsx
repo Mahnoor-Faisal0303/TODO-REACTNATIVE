@@ -15,22 +15,54 @@ import {
   TextInput,
   View,
 } from 'react-native';
-//import {v4 as uuidv4} from 'uuid';
+import uuid from 'react-native-uuid';
+
+interface TodoItem {
+  id: string;
+  text: string;
+}
 
 function App(): React.JSX.Element {
-  const [text, onChangeText] = React.useState('');
-  const [data, setData] = React.useState<string[]>([]);
-  //const [id, setId] = React.useState<string>('1');
+  const [text, onChangeText] = React.useState<string>('');
+  const [data, setData] = React.useState<TodoItem[]>([]);
+  const [editedId, setEditedId] = React.useState<string>('');
+  const [showUpdateButton, setShowUpdateButton] = React.useState<boolean>(false);
+  const [showAddButton, setShowAddButton] = React.useState<boolean>(true);
+
   const Add = () => {
     if (text.trim() !== '') {
-      setData(prevData => [...prevData, text]);
+      const newId = uuid.v4().toString();
+      setData(prevData => [...prevData, {id: newId, text}]);
       onChangeText('');
-      console.log('printiing');
-      //setId(uuidv4());
     }
   };
-  const Delete = () => {
-    //console.log(id);
+
+  const Delete = (itemId: string) => {
+    setData(prevData => prevData.filter(item => item.id !== itemId));
+  };
+
+  const Edit = (itemId: string, itemText: string) => {
+    onChangeText(itemText);
+    setEditedId(itemId);
+    setShowUpdateButton(true);
+    setShowAddButton(false);
+  };
+
+  const update = () => {
+    console.log('update', text);
+    if (text.trim() !== '') {
+      setData(prevData =>
+        prevData.map(item => {
+          if (item.id === editedId) {
+            return {...item, text};
+          }
+          return item;
+        }),
+      );
+      onChangeText('');
+      setShowUpdateButton(false);
+      setShowAddButton(true);
+    }
   };
 
   return (
@@ -43,19 +75,31 @@ function App(): React.JSX.Element {
         value={text}
       />
       <View style={styles.button}>
-        <Button onPress={Add} title="Add" color="gray" />
+        <View>
+          {showAddButton && <Button onPress={Add} title="Add" color="gray" />}
+        </View>
+        <View>
+          {showUpdateButton && (
+            <Button onPress={update} title="Update" color="gray" />
+          )}
+        </View>
       </View>
       <FlatList
+        keyExtractor={(item, index) => index.toString()}
         key={data.length}
         data={data}
         renderItem={({item}) => (
           <View style={styles.container}>
             <Text style={styles.list}>
-              {item}
-              <View style={styles.actionButton}>
-                <Button onPress={Delete} title="Delete" color="gray" />
+              {item.text}
+              <View style={styles.actionButton} key={item.id}>
                 <Button
-                  onPress={() => console.log('Button for item:', item)}
+                  onPress={() => Delete(item.id)}
+                  title="Delete"
+                  color="gray"
+                />
+                <Button
+                  onPress={() => Edit(item.id, item.text)}
                   title="Edit"
                   color="gray"
                 />
@@ -79,10 +123,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    width: 80,
     fontSize: 90,
     marginBottom: 15,
-    marginLeft: 30,
+    marginLeft: 45,
+    flexDirection: 'row',
   },
   input: {
     height: 50,
