@@ -2,10 +2,7 @@ import React from 'react';
 import { FlatList, Text, View } from 'react-native';
 import SecondaryButtons from './SecondaryButtons';
 import { styles } from '../style/Style';
-interface TodoItem {
-  id: string;
-  text: string;
-}
+import { TodoItem } from '../screens/HomeScreen';
 
 interface ListProps {
   data: TodoItem[];

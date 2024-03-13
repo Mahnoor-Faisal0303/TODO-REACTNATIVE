@@ -1,12 +1,12 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import uuid from 'react-native-uuid';
-import {styles} from '../style/Style';
+import { styles } from '../style/Style';
 import Input from '../components/Input';
 import Buttons from '../components/PrimaryButton';
 import List from '../components/List';
 
-interface TodoItem {
+export interface TodoItem {
   id: string;
   text: string;
 }
@@ -15,14 +15,13 @@ function HomeScreen(): React.JSX.Element {
   const [text, onChangeText] = React.useState<string>('');
   const [data, setData] = React.useState<TodoItem[]>([]);
   const [editedId, setEditedId] = React.useState<string>('');
-  const [showUpdateButton, setShowUpdateButton] =
-    React.useState<boolean>(false);
+  const [showUpdateButton, setShowUpdateButton] = React.useState<boolean>(false);
   const [showAddButton, setShowAddButton] = React.useState<boolean>(true);
 
   const Add = () => {
     if (text.trim() !== '') {
       const newId = uuid.v4().toString();
-      setData(prevData => [...prevData, {id: newId, text}]);
+      setData(prevData => [...prevData, { id: newId, text }]);
       onChangeText('');
     }
   };
@@ -44,7 +43,7 @@ function HomeScreen(): React.JSX.Element {
       setData(prevData =>
         prevData.map(item => {
           if (item.id === editedId) {
-            return {...item, text};
+            return { ...item, text };
           }
           return item;
         }),
