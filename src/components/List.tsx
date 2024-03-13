@@ -1,7 +1,7 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import SecondaryButtons from './SecondaryButtons';
-import {styles} from '../Style/Style';
+import { styles } from '../style/Style';
 interface TodoItem {
   id: string;
   text: string;
@@ -13,12 +13,12 @@ interface ListProps {
   onEdit: (id: string, text: string) => void;
 }
 
-const List: React.FC<ListProps> = ({data, onDelete, onEdit}) => {
+const List: React.FC<ListProps> = ({ data, onDelete, onEdit }) => {
   return (
     <FlatList
       keyExtractor={item => item.id}
       data={data}
-      renderItem={({item}) => (
+      renderItem={({ item }) => (
         <View style={styles.container}>
           <View style={styles.list}>
             <Text style={styles.font}>{item.text}</Text>

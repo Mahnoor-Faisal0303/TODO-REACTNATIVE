@@ -1,14 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import uuid from 'react-native-uuid';
-import {styles} from '../Style/Style';
+import {styles} from '../style/Style';
 import Input from '../components/Input';
 import Buttons from '../components/PrimaryButton';
 import List from '../components/List';
@@ -18,7 +11,7 @@ interface TodoItem {
   text: string;
 }
 
-function App(): React.JSX.Element {
+function HomeScreen(): React.JSX.Element {
   const [text, onChangeText] = React.useState<string>('');
   const [data, setData] = React.useState<TodoItem[]>([]);
   const [editedId, setEditedId] = React.useState<string>('');
@@ -93,4 +86,4 @@ function App(): React.JSX.Element {
   );
 }
 
-export default App;
+export default HomeScreen;
