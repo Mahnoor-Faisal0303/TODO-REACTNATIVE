@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    marginTop: 130,
+    marginTop: 60,
     fontSize: 50,
     textAlign: 'center',
   },
@@ -49,7 +49,13 @@ export const styles = StyleSheet.create({
   },
   actionButtonSpacing: {
     marginLeft: 4,
+  },
+  imagecontainer: {
+    borderWidth: 1,
+    height: 70,
+    margin: 5,
   }
+
 });
 
 

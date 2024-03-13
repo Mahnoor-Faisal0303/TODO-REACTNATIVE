@@ -10,15 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.12",
-    "@mui/styled-engine-sc": "^6.0.0-alpha.17",
     "react": "18.2.0",
     "react-native": "0.73.5",
-    "react-native-paper": "^5.12.3",
+    "react-native-image-picker": "^7.1.1",
     "react-native-uuid": "^2.0.1",
-    "styled-components": "^6.1.8",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

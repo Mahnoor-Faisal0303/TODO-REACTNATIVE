@@ -1,10 +1,12 @@
-import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, Image, SafeAreaView, Text, View } from 'react-native';
 import uuid from 'react-native-uuid';
 import { styles } from '../style/Style';
 import Input from '../components/Input';
 import Buttons from '../components/PrimaryButton';
 import List from '../components/List';
+import useHideOrDisplayButton from '../hooks/HideOrDisplayButton';
+//import ImagePicker from 'react-native-image-picker'; 
 
 export interface TodoItem {
   id: string;
@@ -15,9 +17,7 @@ function HomeScreen(): React.JSX.Element {
   const [text, onChangeText] = React.useState<string>('');
   const [data, setData] = React.useState<TodoItem[]>([]);
   const [editedId, setEditedId] = React.useState<string>('');
-  const [showUpdateButton, setShowUpdateButton] = React.useState<boolean>(false);
-  const [showAddButton, setShowAddButton] = React.useState<boolean>(true);
-
+  const { showUpdateButton, setShowUpdateButton, showAddButton, setShowAddButton } = useHideOrDisplayButton(false, true);
   const Add = () => {
     if (text.trim() !== '') {
       const newId = uuid.v4().toString();
@@ -38,7 +38,6 @@ function HomeScreen(): React.JSX.Element {
   };
 
   const update = () => {
-    console.log('update', text);
     if (text.trim() !== '') {
       setData(prevData =>
         prevData.map(item => {
@@ -53,6 +52,30 @@ function HomeScreen(): React.JSX.Element {
       setShowAddButton(true);
     }
   };
+
+  //const [selectedImage, setSelectedImage] = useState(null);
+
+  // const selectImage = () => {
+  //   const options = {
+  //     title: 'Select Image',
+  //     storageOptions: {
+  //       skipBackup: true,
+  //       path: 'images',
+  //     },
+  //   };
+
+  //    ImagePicker.showImagePicker(options, (response) => {
+  //     if (response.didCancel) {
+  //       console.log('User cancelled image picker');
+  //     } else if (response.error) {
+  //       console.log('ImagePicker Error: ', response.error);
+  //     } else if (response.customButton) {
+  //       console.log('User tapped custom button: ', response.customButton);
+  //     } else {
+  //       setSelectedImage(response.uri);
+  //     }
+  //   });
+   //};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -80,6 +103,17 @@ function HomeScreen(): React.JSX.Element {
       </View>
 
       <List data={data} onDelete={Delete} onEdit={Edit} />
+      
+      {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {selectedImage && <Image source={{ uri: selectedImage }} style={{ width: 200, height: 200 }} />}
+      <Button title="Select Image" onPress={selectImage} />
+    </View> */}
+
+      <View style={styles.imagecontainer}>
+        <Text>
+             hello
+        </Text>
+      </View>
 
     </SafeAreaView>
   );

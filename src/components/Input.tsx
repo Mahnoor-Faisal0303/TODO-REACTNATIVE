@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleProp, TextInput, TextStyle} from 'react-native';
+import { StyleProp, TextInput, TextStyle } from 'react-native';
 
 interface InputProps {
   style: StyleProp<TextStyle>;
