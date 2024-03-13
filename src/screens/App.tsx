@@ -8,7 +8,7 @@
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import uuid from 'react-native-uuid';
-import {styles} from '../Style';
+import {styles} from '../Style/Style';
 import Input from '../components/Input';
 import Buttons from '../components/PrimaryButton';
 import List from '../components/List';
@@ -88,6 +88,7 @@ function App(): React.JSX.Element {
       </View>
 
       <List data={data} onDelete={Delete} onEdit={Edit} />
+
     </SafeAreaView>
   );
 }

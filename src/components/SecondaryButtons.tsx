@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button} from 'react-native';
+import {Button, View} from 'react-native';
+import { styles } from '../Style/Style';
 
 interface ButtonProps {
   onPress: () => void;
@@ -8,7 +9,9 @@ interface ButtonProps {
 }
 const SecButtons: React.FC<ButtonProps> = ({onPress, title, color}) => {
   return (
+    <View style={styles.actionButtonSpacing}>
       <Button onPress={onPress} title={title} color={color} />
+    </View>
     )
 }
 export default SecButtons;

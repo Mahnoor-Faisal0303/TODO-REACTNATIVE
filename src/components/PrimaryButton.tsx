@@ -9,9 +9,9 @@ interface ButtonProps {
 }
 const Buttons: React.FC<ButtonProps> = ({onPress, title, color, showButton}) => {
   return (
-        <View>
-      {showButton && <Button onPress={onPress} title={title} color={color} />}
-        </View>
+      <View>
+        {showButton && <Button onPress={onPress} title={title} color={color} />}
+      </View>
     )
 }
 export default Buttons;

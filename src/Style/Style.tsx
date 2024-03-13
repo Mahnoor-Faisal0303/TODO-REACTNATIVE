@@ -7,36 +7,49 @@ export const styles = StyleSheet.create({
   },
   title: {
     marginTop: 130,
-    fontSize: 30,
+    fontSize: 50,
     textAlign: 'center',
   },
   button: {
-    fontSize: 90,
     marginBottom: 15,
     marginLeft: 30,
     flexDirection: 'row',
+    width: 140,
   },
   input: {
     height: 50,
     width: 300,
     margin: 30,
     borderWidth: 1,
+    borderRadius: 5,
+    borderColor: 'green',
     padding: 10,
   },
   list: {
-    fontSize: 20,
-    margin: 10,
+    //display: 'flex',
+    flexDirection: 'row',
+    margin: 6,
     width: 300,
     borderWidth: 1,
     borderColor: 'black',
-    borderRadius: 10,
-    padding: 10,
+    borderRadius: 5,
+    paddingHorizontal: 7,
+    height: 'auto',
     alignSelf: 'center',
+  },
+  font: {
+    flex: 1,
+    fontSize: 20,
+    textAlignVertical: 'center',
   },
   actionButton: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    marginVertical: 3,
+    alignItems: 'center',
   },
+  actionButtonSpacing: {
+    marginLeft: 4,
+  }
 });
 
 
